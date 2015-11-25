@@ -63,9 +63,12 @@
 {
     CGFloat keyboardHeight = [noti.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;;
     [self.view.layer removeAllAnimations];
+    
+    //获取当前第一响应者
     UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
     UIView *firstResponderView = [keyWindow performSelector:@selector(findFirstResponder)];
     
+    //将当前第一响应者的frame转换成应用窗口坐标下的frame，便于跟键盘的frame做比较
     CGRect rect = [[UIApplication sharedApplication].keyWindow convertRect:firstResponderView.frame fromView:firstResponderView.superview];
     
     CGFloat bottom = rect.origin.y + rect.size.height;
